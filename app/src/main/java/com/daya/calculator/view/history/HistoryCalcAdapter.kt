@@ -30,11 +30,7 @@ class HistoryCalcAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun onBind(history: HistoryCalcModel) {
-            binding.formulaResultCalc.text = "${history.calculation}=${history.result}"
-            binding.addressCalc.text = history.address
-            binding.root.setOnClickListener {
-                onItemClick(history.latitude,history.longitude)
-            }
+            binding.formulaResultCalc.text = "${history.formula}=${history.result}"
         }
     }
 
