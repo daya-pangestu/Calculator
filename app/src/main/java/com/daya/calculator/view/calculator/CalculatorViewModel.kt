@@ -33,8 +33,10 @@ class CalculatorViewModel : ViewModel() {
         }catch (e :Exception){
             Log.e("calculate number","${e.message}")
             builder.clear()
+            val errorMessage = "error"
+            builder.append(errorMessage)
             //show error
-            _resultCalculationLiveData.value = wrapResult("error")
+            _resultCalculationLiveData.value = wrapResult(errorMessage,4)
         }
     }
 
@@ -70,6 +72,5 @@ class CalculatorViewModel : ViewModel() {
     }
 
     private fun wrapResult(text: String, selectionPosition: Int? = null) = Pair(text,selectionPosition)
-
 
 }
