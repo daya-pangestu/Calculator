@@ -7,10 +7,6 @@ import androidx.room.PrimaryKey
 data class HistoryCalcModel(
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0,
-    var calculation: String,
+    var formula: String,
     var result:String,
-    var time: Long,
-    var latitude : Double,
-    var longitude : Double,
-    var address : String
 )
