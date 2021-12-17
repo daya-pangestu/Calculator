@@ -19,14 +19,14 @@ class CalculatorViewModel : ViewModel() {
     fun calculate() {
         val formula = builder.toString()
         try {
-            val resultCalculate = formula.keval().toString()
+            val calculateResult = formula.keval().toString()
             builder.clear()
-            val resultNewFormat = if (resultCalculate.contains(".0")) {
-                resultCalculate.replace(".0", "")
-            } else resultCalculate
-            builder.append(resultNewFormat)
+            val roundResult = if (calculateResult.contains(".0")) {
+                calculateResult.replace(".0", "")
+            } else calculateResult
+            builder.append(roundResult)
             //show result
-            _resultCalculationLiveData.value = wrapResult(builder.toString())
+            _resultCalculationLiveData.value = wrapResult(builder.toString(), builder.length)
 
             //save to db
 

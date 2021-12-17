@@ -52,7 +52,7 @@ class CalculatorFragment : Fragment() {
             val text = it.first
             val selectionPosition = it.second
             binding.textDisplay.setText(text)
-            if (selectionPosition != null && text.isEmpty()) {
+            if (selectionPosition != null && text.isNotEmpty()) {
                 binding.textDisplay.setSelection(selectionPosition)
             }
         }
