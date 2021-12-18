@@ -1,4 +1,4 @@
-package com.daya.calculator.data
+package com.daya.calculator.data.db
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
