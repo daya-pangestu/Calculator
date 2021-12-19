@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.daya.calculator.databinding.FragmentHistoryCalcBinding
 
@@ -32,9 +33,11 @@ class HistoryCalcFragment : Fragment(){
         }
         binding.rvHistoryCalc.apply {
             adapter = historyCalcAdapter
-            layoutManager = LinearLayoutManager(requireContext())
+            layoutManager = GridLayoutManager(requireContext(),2)
             setHasFixedSize(true)
         }
+
+        viewModel.loadData.observe(viewLifecycleOwner,(historyCalcAdapter::submitList))
     }
 
     override fun onDestroyView() {

@@ -8,10 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.daya.calculator.data.db.HistoryCalcModel
 import com.daya.calculator.databinding.ItemHistoryCalcBinding
 
-
 //ListAdapter is extended from recyclerview
 class HistoryCalcAdapter(
-    val onItemClick : (Double,Double) -> Unit
+    private val onItemClick : (Double, Double) -> Unit
 ) : ListAdapter<HistoryCalcModel, HistoryCalcAdapter.HistoryCalcViewHolder>(diffHistoryCalc) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryCalcViewHolder {
