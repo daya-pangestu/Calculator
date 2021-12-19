@@ -1,13 +1,20 @@
 package com.daya.calculator.view.calculator
 
+import android.app.Application
 import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.daya.calculator.data.db.HistoryCalcDatabase
+import com.daya.calculator.data.db.HistoryCalcModel
 import com.notkamui.keval.keval
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class CalculatorViewModel : ViewModel() {
+class CalculatorViewModel(application: Application) : AndroidViewModel(application) {
 
     private val builder = StringBuilder()
+    private val historyDao = HistoryCalcDatabase.getInstance(application)?.historyCalcDao()
 
     /**
     * string param = the text, formula, result
@@ -29,6 +36,15 @@ class CalculatorViewModel : ViewModel() {
             _resultCalculationLiveData.value = wrapResult(builder.toString(), builder.length)
 
             //save to db
+            //TODO inject dispatcher with dependency injection
+            viewModelScope.launch(Dispatchers.IO) {
+                historyDao?.addNewHistory(
+                    HistoryCalcModel(
+                        formula = formula,
+                        result = roundResult
+                    )
+                )
+            }
 
         }catch (e :Exception){
             Log.e("calculate number","${e.message}")

@@ -2,6 +2,7 @@ package com.daya.calculator.data.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
+import androidx.room.Insert
 import androidx.room.Query
 
 @Dao
@@ -12,4 +13,7 @@ interface HistoryCalcDao {
 
     @Query("DELETE FROM historycalcmodel")
     fun deleteAllHistory()
+
+    @Insert
+    fun addNewHistory(historyCalcModel: HistoryCalcModel)
 }
